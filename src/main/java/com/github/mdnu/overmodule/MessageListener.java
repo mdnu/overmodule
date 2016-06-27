@@ -18,6 +18,7 @@ public class MessageListener {
 	public String workingDir = System.getProperty("user.dir") + "\\maps\\";
 	public String help = "";
 	
+	/** Constructor */
 	public MessageListener() {
 		fillMap();
 		fillCmdMap();
@@ -27,10 +28,6 @@ public class MessageListener {
 		for (String cmd : fullCmd) {
 			help += ("!" + cmd + "\n");
 		}
-	}
-	
-	public void help() throws HTTP429Exception, DiscordException, MissingPermissionsException {
-		sendMessage(help);
 	}
 	
 	@EventSubscriber
@@ -48,12 +45,27 @@ public class MessageListener {
 				channel.sendFile(new File(workingDir + mapMap.get(messageContent)));
 			} else if (messageContent.equals("help")) {
 				this.help();
+			} else if (messageContent.contains("counterpick")) {
+				messageContent = messageContent.trim().replaceAll("counterpick ", "");
+				sendMessage("counterpick feature not yet implemented.");
 			}
 		}
 	}
 	
 	/**
+	 * Creates !help dialogue.
+	 * @throws HTTP429Exception
+	 * @throws DiscordException
+	 * @throws MissingPermissionsException
+	 */
+	public void help() throws HTTP429Exception, DiscordException, MissingPermissionsException {
+		sendMessage(help);
+	}
+	
+	/**
 	 * Helper method for sending messages.
+	 * @param message
+	 * @param channel
 	 */
 	public void sendMessage(String message, IChannel channel) {
 		try {
@@ -67,26 +79,14 @@ public class MessageListener {
 		sendMessage(message, this.channel);
 	}
 	
-	/**
-	 * Loads map images.
-	 */
+	/** Loads map images. */
 	private void fillMap() {
-		mapMap.put("anubis", "anubis.jpg");
-		mapMap.put("dorado", "dorado.jpg");
-		mapMap.put("gibraltar", "gibraltar.jpg");
-		mapMap.put("hanamura", "hanamura.jpg");
-		mapMap.put("hollywood", "hollywood.jpg");
-		mapMap.put("kingsrow", "kingsrow.jpg");
-		mapMap.put("lijiang", "lijiang.jpg");
-		mapMap.put("nepal", "nepal.jpg");
-		mapMap.put("numbani", "numbani.jpg");
-		mapMap.put("route66", "route66.jpg");
-		mapMap.put("volskaya", "volskaya.jpg");
+		for (Maps map : Maps.values()) {
+			mapMap.put(map.toString(), map.toString() + ".jpg");
+		}
 	}
 	
-	/**
-	 * Loads commands.
-	 */
+	/** Loads map commands. */
 	private void fillCmdMap() {
 		String cmdHelp = "commands:\n";
 		for (String cmd : mapMap.keySet()) {
@@ -95,9 +95,7 @@ public class MessageListener {
 		cmdMap.put("cmds", cmdHelp);
 	}
 	
-	/**
-	 * Helper method.
-	 */
+	/** Loads all commands. */
 	private void fillFullCmd() {
 		fullCmd.add("help");
 		fullCmd.addAll(cmdMap.keySet());
