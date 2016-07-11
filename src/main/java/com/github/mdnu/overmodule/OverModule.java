@@ -19,7 +19,7 @@ public class OverModule implements IModule {
 	
 	@Override
 	public String getName() {
-		return "overwatch map module";
+		return "overwatch helper module";
 	}
 	
 	@Override
