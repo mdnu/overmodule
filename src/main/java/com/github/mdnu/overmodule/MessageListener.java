@@ -45,9 +45,12 @@ public class MessageListener {
 				channel.sendFile(new File(workingDir + mapMap.get(messageContent)));
 			} else if (messageContent.equals("help")) {
 				this.help();
-			} else if (messageContent.contains("counterpick")) {
+			} else if (messageContent.contains("counter")) {
 				messageContent = messageContent.trim().replaceAll("counterpick ", "");
 				sendMessage("counterpick feature not yet implemented.");
+			} else if (messageContent.contains("idealteam")) {
+				messageContent = messageContent.trim().replaceAll("idealteam ", "");
+				sendMessage("ideal team feature not yet implemented.");
 			}
 		}
 	}
