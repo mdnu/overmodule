@@ -49,8 +49,9 @@ public class MessageListener {
 				messageContent = messageContent.trim().replaceAll("counterpick ", "");
 				sendMessage("counterpick feature not yet implemented.");
 			} else if (messageContent.contains("idealteam")) {
-				messageContent = messageContent.trim().replaceAll("idealteam ", "");
+				messageContent = messageContent.trim().replaceAll("idealteam", "");
 				sendMessage("ideal team feature not yet implemented.");
+				/** ideal team feature should take in two arguments, 1. offense vs. defense, 2. the map **/
 			}
 		}
 	}
