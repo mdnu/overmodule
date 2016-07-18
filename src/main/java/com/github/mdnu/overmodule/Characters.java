@@ -1,6 +1,7 @@
 package com.github.mdnu.overmodule;
 
 public enum Characters {
+	ana("Ana"),
 	bastion("Bastion"),
 	dva("D.Va"),
 	genji("Genji"),
