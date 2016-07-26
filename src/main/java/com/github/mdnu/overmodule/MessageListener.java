@@ -30,6 +30,7 @@ public class MessageListener {
 		}
 	}
 	
+	/** Main EventSubscriber **/
 	@EventSubscriber
 	public void onMessage(MessageReceivedEvent event) throws HTTP429Exception, DiscordException, MissingPermissionsException, IOException  {
 		message = event.getMessage();
@@ -45,13 +46,6 @@ public class MessageListener {
 				channel.sendFile(new File(workingDir + mapMap.get(messageContent)));
 			} else if (messageContent.equals("help")) {
 				this.help();
-			} else if (messageContent.contains("counter")) {
-				messageContent = messageContent.trim().replaceAll("counterpick ", "");
-				sendMessage("counterpick feature not yet implemented.");
-			} else if (messageContent.contains("idealteam")) {
-				messageContent = messageContent.trim().replaceAll("idealteam", "");
-				sendMessage("ideal team feature not yet implemented.");
-				/** ideal team feature should take in two arguments, 1. offense vs. defense, 2. the map **/
 			}
 		}
 	}
