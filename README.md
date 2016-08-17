@@ -8,3 +8,4 @@ TODO:
 
   - implement a current tier-list system to conform to the competitive meta.
   - implement a counterpick database and team composition generator.
+  - include dates for competitive seasons and most recent patch notes.
